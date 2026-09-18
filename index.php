@@ -37,7 +37,7 @@
 
               pg_query_params(
                 $conexao,
-                "INSERT INTO usuario(nome, email, telefone) VALUES ($1, $2 $3)",
+                "INSERT INTO usuario(nome, email, telefone) VALUES ($1, $2, $3)",
                 array($nome, $email, $telefone)
                 
               );
