@@ -19,11 +19,36 @@
        
         <form method="POST">
             <h1>Cadastro de Clientes</h1>
-            <label>Nome: <input type="text" name="nome"></label>
-            <label>Email: <input type="email" name="email"></label>
-            <label>Telefone: <input type="tel" name="telefone" id=""></label>
+            <label>Nome: <input type="text" name="nome" id="nome"></label>
+            <label>Email: <input type="email" name="email" id="email"></label>
+            <label>Telefone: <input type="tel" name="telefone" id="telefone"></label>
             <button type="submit">Cadastrar</button>
         </form>
+          <?php
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+              $nome = $_POST['nome'];
+              $email = $_POST['email'];
+              $telefone = $_POST['telefone'];
+
+              $databaseUrl = getenv("DATABASE_URL");
+
+              $conexao = pg_connect($databaseUrl);
+
+
+              pg_query_params(
+                $conexao,
+                "INSERT INTO usuario(nome, email, telefone) VALUES ($1, $2 $3)",
+                array($nome, $email, $telefone)
+                
+              );
+
+
+              echo "Cadastro REALIZADO!";
+
+
+            }
+
+          ?>
       </div>
   </div>
   
@@ -33,14 +58,7 @@
     <p>© 2026 Arthur Aguiar- Todos os direitos reservados</p>
   </footer>
 
-  <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-      $email = $_POST['email'];
 
-      echo "E-mail recebido: " .$email;
-    }
-
-  ?>
 
 
 
