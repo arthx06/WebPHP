@@ -33,7 +33,14 @@
     <p>© 2026 Arthur Aguiar- Todos os direitos reservados</p>
   </footer>
 
-  
+  <?php
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+      $email = $_POST['email'];
+
+      echo "E-mail recebido: " .$email;
+    }
+
+  ?>
 
 
 
